@@ -1,0 +1,14 @@
+@import '_reset';
+@import '_color';
+
+* {
+  font-family: 'Lato', sans-serif;
+}
+
+p, a, h1, h2, h3, h4, h5 {
+  color: $color-dark;
+}
+
+li {
+  list-style-type: none;
+}

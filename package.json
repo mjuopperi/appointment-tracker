@@ -1,0 +1,25 @@
+{
+  "name": "electrun",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "clndr": "^1.3.4",
+    "electron-prebuilt": "^0.36.2",
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.1",
+    "gulp-watch": "^4.3.5",
+    "jquery": "^2.1.4",
+    "lodash": "^3.10.1",
+    "moment": "^2.11.0",
+    "pouchdb": "^5.1.0",
+    "pouchdb-collate": "^1.2.0",
+    "pouchdb-replication-stream": "^1.2.6",
+    "tether-select": "^1.1.0"
+  }
+}

@@ -1,0 +1,67 @@
+@import '_color';
+@import '_select';
+
+.input-container {
+  position: relative;
+  display: inline-block;
+  padding-top: 1.4em;
+  &:first-of-type {
+    width: 40%;
+    min-width: 200px;
+  }
+}
+
+label {
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+input[type="text"], input[type="number"] {
+  display: inline-block;
+  vertical-align: middle;
+  background-color: $color-light;
+  color: $color-dark;
+  border: 1px solid $color-primary;
+  border-radius: 4px;
+  font-size: 1em;
+  padding: 0.5em 0.5em;
+  width: 100%;
+}
+
+ul.patients, ul.events {
+  padding: 0;
+  li {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    input[type="text"], input[type="number"] {
+      font-size: 0.8em;
+      border: none;
+      border-bottom: 1px solid $color-primary;
+      border-radius: 0;
+      margin: 0.2em 0;
+      padding: 0.6em;
+      height: 32px;
+      ul.patients & {
+        min-width: 200px;
+      }
+    }
+    button {
+      &.remove {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        background: url('../assets/img/delete.svg') no-repeat center;
+        background-color: $color-light;
+        background-size: 20px;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid $color-primary;
+        padding: 0;
+      }
+    }
+  }
+}

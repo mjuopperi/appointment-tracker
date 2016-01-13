@@ -1,0 +1,14 @@
+@import 'nav';
+@import '_base';
+@import '_button';
+@import '_form';
+@import '_calendar';
+
+section {
+  margin: 0 auto;
+  padding: 0 2em;
+
+  &:not(:first-of-type) {
+    display: none;
+  }
+}

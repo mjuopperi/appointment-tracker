@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="assets/fonts/Lato.css">
+    <script src="js/app.js"></script>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <button type="button" name="overview" class="active">Katsaus</button>
+        </li>
+        <li>
+          <button type="button" name="appointments">Käyntikerrat</button>
+        </li>
+        <li>
+          <button type="button" name="patients">Asiakkaat</button>
+        </li>
+      </ul>
+    </nav>
+    <section id="overview">
+      <h1>Vuosi: </h1>
+      <button type="button" name="put">Put</button>
+      <button type="button" name="get">Get</button>
+      <ul id="data">
+      </ul>
+    </section>
+    <section id="appointments">
+      <h1>Käyntikerrat</h1>
+      <div class="input-container">
+        <select name="patient"></select>
+        <label for="patient">Asiakas</label>
+      </div>
+      <did class="calendar"></div>
+    </section>
+    <section id="patients">
+      <h1>Asiakkaat</h1>
+      <form class="add-patient">
+        <div class="input-container">
+          <input type="text" name="name">
+          <label for="name">Nimi</label>
+        </div>
+        <div class="input-container">
+          <select name="default-appointment"></select>
+          <label for="default-appointment">Oletus käynti</label>
+        </div>
+        <button type="button" name="put-patient">Lisää asiakas</button>
+      </form>
+      <ul class="patients">
+      </ul>
+    </section>
+  </body>
+  <script id="calendar-template" type="text/template">
+    <div class="clndr-controls">
+      <div class="clndr-previous-button">&lsaquo;</div>
+      <div class="month"><%= month %> <%= year %></div>
+      <div class="clndr-next-button">&rsaquo;</div>
+    </div>
+    <div class="clndr-grid">
+      <div class="days-of-the-week">
+        <% _.each(daysOfTheWeek, function (day) { %>
+          <div class="header-day"><%= day %></div>
+        <% }); %>
+      </div>
+      <div class="days">
+        <% _.each(days, function (day) { %>
+          <div class="<%= day.classes %>" data-date="<%= day.date %>">
+            <span><%= day.day %></span>
+          </div>
+        <% }); %>
+      </div>
+    </div><!-- inline-block fix
+ --><div class="event-listing">
+      <div class="event-listing-title">Terapiakäynnit</div>
+      <ul class="events"></ul>
+      <button class="add-event">Lisää uusi</button>
+    </div>
+  </script>
+</html>
