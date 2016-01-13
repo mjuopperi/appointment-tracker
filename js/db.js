@@ -5,6 +5,15 @@ fs.existsSync("db") || fs.mkdirSync("db");
 const patients = new PouchDB('db/patients');
 const appointments = new PouchDB('db/appointments');
 
+appointments.createIndex({
+  index: {
+    fields: ['patientId', 'date']
+  }
+}).then(function (result) {
+  console.log('Created index: ', result);
+}).catch(function (err) {
+  alert('Indeksin luonti epäonnistui:\n', err);
+});
 
 var patientChanges = patients.changes({
   since: 'now',

@@ -18,7 +18,7 @@ label {
   width: 100%;
 }
 
-input[type="text"], input[type="number"] {
+input[type="text"] {
   display: inline-block;
   vertical-align: middle;
   background-color: $color-light;
@@ -37,7 +37,7 @@ ul.patients, ul.events {
     flex-flow: row nowrap;
     align-items: center;
 
-    input[type="text"], input[type="number"] {
+    input[type="text"] {
       font-size: 0.8em;
       border: none;
       border-bottom: 1px solid $color-primary;

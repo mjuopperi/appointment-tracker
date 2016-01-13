@@ -19,6 +19,7 @@
     "moment": "^2.11.0",
     "pouchdb": "^5.1.0",
     "pouchdb-collate": "^1.2.0",
+    "pouchdb-find": "^0.8.0",
     "pouchdb-replication-stream": "^1.2.6",
     "tether-select": "^1.1.0"
   }

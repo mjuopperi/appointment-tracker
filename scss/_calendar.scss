@@ -62,10 +62,18 @@
       &.adjacent-month { color: $color-dark-gray; }
       cursor: pointer;
 
-      &:hover, &.today, &.selected {
+      &.today {
         background-color: $color-light;
         span {
           border-bottom: 2px solid $color-primary;
+        }
+      }
+
+      &:hover, &.selected {
+        background-color: $color-primary;
+        color: $color-light;
+        span {
+          border-bottom: 2px solid $color-light;
         }
       }
 

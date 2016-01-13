@@ -26,7 +26,16 @@ function putPatient() {
 function removePatient() {
   var id = $(this).parent().data('id');
   db.patients.get(id).then(function(patient) {
-    db.patients.remove(patient);
+    db.appointments.find({
+      selector: { patientId: patient._id }
+    }).then(function(result) {
+      _.forEach(result.docs, function(appointment) {
+        db.appointments.remove(appointment)
+      });
+      db.patients.remove(patient);
+    }).catch(function(err) {
+      alert('Virhe poistettaessa asiakasta:\n', err);
+    });
   })
 }
 
@@ -52,15 +61,11 @@ function fillOptions() {
   util.renderOptions($('#patients').find('> form select'));
 }
 
-function isNew(change) {
-  return change.doc._rev.startsWith('1-');
-}
-
 function updatePatients(change) {
   var patientList = $('ul.patients');
   if (change.deleted) {
     $('ul.patients').find('li[data-id="' + change.id + '"]').remove();
-  } else if (isNew(change)) {
+  } else if (util.isNew(change)) {
     var patient = renderPatient(change.doc);
     patientList.append(patient);
     util.initSelect(patient.find('select')[0], 'select-list');

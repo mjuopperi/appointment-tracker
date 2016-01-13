@@ -15,6 +15,10 @@ function createId(values) {
   return pouchCollate.toIndexableString(values).replace(/\u0000/g, '\u0001');
 }
 
+function isNew(change) {
+  return change.doc._rev.startsWith('1-');
+}
+
 function renderOptions(select, selected) {
   _.each(appointmentType, function(text, value) {
     select.append($('<option>', { value: value, text: text }));
@@ -43,6 +47,7 @@ function renderCalendar(date, events, container) {
 module.exports = {
   getKey: getKey,
   createId: createId,
+  isNew: isNew,
   renderOptions: renderOptions,
   initSelect: initSelect,
   renderCalendar: renderCalendar
