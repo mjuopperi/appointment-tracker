@@ -17,9 +17,8 @@ var calendar;
 function saveAppointment() {
   var patientId = $('#appointments').find('select[name="patient"]').val();
   db.patients.get(patientId).then(function(patient) {
-    var defaultAppointmentType = util.getKey(appointmentType, patient.defaultAppointment);
     var date = $('.day.selected').first().data('date');
-    var appointment = new Appointment(patient, 1, defaultAppointmentType, date);
+    var appointment = new Appointment(patient, 1, patient.defaultAppointment, date);
     db.appointments.post(appointment).then(function(d) {
     }).catch(function (err) {
       alert('error:\n' + err)
@@ -91,7 +90,7 @@ function renderAppointments(appointments) {
 
 function renderAppointment(appointment) {
   var select = $('<select>', { name: 'appointment-type' });
-  util.renderOptions(select, util.getKey(appointmentType, appointment.type));
+  util.renderOptions(select, appointment.type);
   return $('<li>', {'data-id': appointment._id})
     .append($('<input>', {
       type: 'text',

@@ -12,6 +12,7 @@ const TYPE = {
 
 function Appointment(patient, duration, type, date) {
   this.patientId = patient._id;
+  this.patientName = patient.name;
   this.duration = duration;
   this.type = type;
   this.date = date;

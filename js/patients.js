@@ -11,9 +11,10 @@ var Patient = require('./patient');
 var Appointment = require('./appointment').Appointment;
 var appointmentType = require('./appointment').TYPE;
 
-function putPatient() {
-  var name = $('form.add-patient').find('input[name="name"]').val();
-  var defaultAppointment = appointmentType[$('option:selected', $('form.add-patient')).val()];
+function putPatient(e) {
+  e.preventDefault();
+  var name = $(this).find('input[name="name"]').val();
+  var defaultAppointment = $('option:selected', $(this)).val();
   var patient = new Patient(name, defaultAppointment);
   patient._id = util.createId([patient.name, patient.defaultAppointment]);
   db.patients.put(patient).then(function(d) {
@@ -50,9 +51,9 @@ function updateName() {
 
 function updateDefaultAppointment() {
   var id = $(this).parent().data('id');
-  var selectedOption = $("option:selected", this);
+  var selectedOption = $("option:selected", this).val();
   db.patients.get(id).then(function(patient) {
-    patient.defaultAppointment = appointmentType[selectedOption.val()];
+    patient.defaultAppointment = selectedOption;
     db.patients.put(patient);
   })
 }
@@ -96,8 +97,7 @@ function renderPatients(patientData) {
 
 function renderPatient(patient) {
   var select = $('<select>', { name: 'default-appointment' });
-  var defaultAppointment = util.getKey(appointmentType, patient.defaultAppointment);
-  util.renderOptions(select, defaultAppointment);
+  util.renderOptions(select, patient.defaultAppointment);
   return $('<li>', {'data-id': patient._id})
     .append($('<input>', {
       type: 'text',
@@ -110,7 +110,7 @@ function renderPatient(patient) {
 
 $(function() {
   var patientList = $('ul.patients');
-  $('button[name="put-patient"]').click(putPatient);
+  $('form.add-patient').submit(putPatient);
   patientList.on('click', 'button.remove', removePatient);
   patientList.on('keyup', 'input', _.debounce(updateName, 150));
   patientList.on('change', 'select', updateDefaultAppointment);

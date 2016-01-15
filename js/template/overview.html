@@ -1,0 +1,23 @@
+<div class="overview-controls">
+  <div class="previous-year-button">&lsaquo;</div>
+<div class="year"><%= year %></div>
+  <div class="next-year-button">&rsaquo;</div>
+</div>
+<table class="overview-grid">
+  <tr class="month-names">
+    <th scope="col"></th>
+    <th scope="col">Yht.</th>
+    <% _.each(monthNames, function (monthName) { %>
+      <th scope="col"><div><span class="month-name"><%= monthName %></span></div></th>
+    <% }); %>
+  </tr>
+  <% _.each(patientData, function (patient) { %>
+  <tr class="patient-row">
+    <th scope="row" class="patient-name" data-id="<%= patient.patientId %>"><%= patient.patientName %></th>
+    <td><%= patient.sum %></td>
+    <% _.each(patient.appointments, function (appointment) { %>
+      <td><%= appointment.sum %></td>
+    <% }); %>
+  </tr>
+  <% }); %>
+</table>

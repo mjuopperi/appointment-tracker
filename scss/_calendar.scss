@@ -1,5 +1,67 @@
 @import '_color';
 
+.year-calendar {
+  .overview-controls {
+    font-size: 1.2em;
+    color: $color-dark;
+    background-color: $color-light;
+    width: 100%;
+    text-align: center;
+    padding: 0.5em 0;
+    text-transform: capitalize;
+    -webkit-user-select: none;
+    .previous-year-button, .next-year-button {
+      display: inline-block;
+      cursor: pointer;
+      font-size: 24px;
+      padding: 0 10px;
+    }
+    .year {
+      display: inline-block;
+      cursor: default;
+      width: 100px;
+    }
+  }
+
+  table.overview-grid {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      border: none;
+      width: calc(100% / 14);
+      text-align: center;
+      padding: 0.2em;
+      &:first-child {
+        text-align: left;
+        white-space: nowrap;
+      }
+    }
+    tr.month-names {
+      cursor: default;
+      th {
+        height: 60px;
+        white-space: nowrap;
+        background: $color-primary;
+        color: $color-light;
+        text-align: center;
+        text-transform: capitalize;
+      }
+    }
+    tr.patient-row {
+      color: $color-dark;
+      background: $color-light;
+      &:nth-child(2n) {
+        background: $color-gray;
+      }
+      th.patient-name {
+        padding-right: 1em;
+      }
+    }
+  }
+
+}
+
 .clndr {
   max-width: 800px;
   background: $color-gray;

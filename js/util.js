@@ -2,10 +2,21 @@ var pouchCollate = require('pouchdb-collate');
 var moment = require('moment');
 var clndr = require('clndr');
 var Select = require('tether-select');
+var fs = require('fs');
 var $ = require('jquery');
 var _ = require('lodash');
 
 var appointmentType = require('./appointment').TYPE;
+
+var templateCache = {};
+
+function getTemplate(name, callback) {
+  fs.readFile(require.resolve('./template/' + name + '.html'), 'utf8', function (err, data) {
+    if (err) throw err;
+    templateCache[name] = data;
+    callback(data);
+  });
+}
 
 function getKey(obj, val) {
   return _.findKey(obj, function(chr) { return chr == val });
@@ -33,6 +44,21 @@ function initSelect(select, className) {
   });
 }
 
+function renderMonthCalendar(events, container) {
+  if ('overview' in templateCache) {
+    rendr(events, templateCache.overview, container);
+  }  else {
+    getTemplate('overview', function(template) {
+      rendr(events, template, container);
+    })
+  }
+}
+
+function rendr(data, template, container) {
+  var compiled = _.template(template);
+  container.html(compiled(data))
+}
+
 function renderCalendar(date, events, container) {
   date.locale('fi');
   moment.locale('fi');
@@ -50,5 +76,6 @@ module.exports = {
   isNew: isNew,
   renderOptions: renderOptions,
   initSelect: initSelect,
+  renderMonthCalendar: renderMonthCalendar,
   renderCalendar: renderCalendar
 };

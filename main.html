@@ -22,11 +22,14 @@
       </ul>
     </nav>
     <section id="overview">
-      <h1>Vuosi: </h1>
-      <button type="button" name="put">Put</button>
-      <button type="button" name="get">Get</button>
-      <ul id="data">
-      </ul>
+      <h1>Katsaus</h1>
+      <div class="input-container">
+        <select name="patient">
+          <option value="all">Kaikki</option>
+        </select>
+        <label for="patient">Asiakas</label>
+      </div>
+      <div class="year-calendar"></div>
     </section>
     <section id="appointments">
       <h1>Käyntikerrat</h1>
@@ -34,7 +37,7 @@
         <select name="patient"></select>
         <label for="patient">Asiakas</label>
       </div>
-      <did class="calendar"></div>
+      <div class="calendar"></div>
     </section>
     <section id="patients">
       <h1>Asiakkaat</h1>
@@ -47,7 +50,7 @@
           <select name="default-appointment"></select>
           <label for="default-appointment">Oletus käynti</label>
         </div>
-        <button type="button" name="put-patient">Lisää asiakas</button>
+        <button type="submit" name="put-patient">Lisää asiakas</button>
       </form>
       <ul class="patients">
       </ul>
